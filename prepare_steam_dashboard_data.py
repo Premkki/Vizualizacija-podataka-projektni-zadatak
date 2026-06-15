@@ -5,6 +5,10 @@ from pathlib import Path
 
 
 ROOT = Path(r"C:\Users\Karlo\Desktop\Vizualizacija projekt")
+# Izvor: Steam Dataset 2025 repozitorij
+# https://github.com/VintageDon/steam-dataset-2025
+# Nacin koristenja: iz CSV paketa koriste se applications.csv,
+# application_genres.csv i genres.csv za pripremu agregiranog JSON skupa.
 CSV_ROOT = ROOT / "steam_dataset_2025_csv_package_v1" / "steam_dataset_2025_csv"
 OUTPUT_PATH = ROOT / "steam_dashboard_data.json"
 
