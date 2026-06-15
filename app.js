@@ -1,3 +1,7 @@
+// Izvor: D3.js dokumentacija (https://d3js.org/ i https://d3js.org/getting-started)
+// te D3 Graph Gallery (https://d3-graph-gallery.com/).
+// Nacin koristenja: referenca za rad sa skalama, osima, update patternom,
+// tooltipovima i tranzicijama pri implementaciji ovog dashboarda.
 const dimensionDefinitions = {
   primaryGenre: "Primarni zanr",
   type: "Tip aplikacije"
