@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Dataset 2025 Dashboard</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260528a">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Vizualizacija podataka</p>
+        <h1>Interaktivna analiza Steam platforme 1997-2025</h1>
+        <p class="hero-text">
+          Visedimenzionalni D3 dashboard za pracenje rasta Steama kroz godine, usporedbu zanrova i tipova aplikacija,
+          odnosa free i paid izdanja, cijena, preporuka i kvalitativnih pokazatelja.
+        </p>
+      </div>
+      <div class="hero-note">
+        <p>Dataset</p>
+        <strong>Steam Dataset 2025</strong>
+        <span>239 664 aplikacije, 1M+ recenzija, 1997-2025</span>
+      </div>
+    </header>
+
+    <section class="controls-panel">
+      <p class="status-message" id="status-message">Ucitavanje podataka...</p>
+      <div class="control-grid">
+        <label>
+          Grupiranje
+          <select id="group-by"></select>
+        </label>
+        <label class="control-span-2">
+          Metrika
+          <select id="metric"></select>
+        </label>
+        <label>
+          X os scatter prikaza
+          <select id="scatter-x"></select>
+        </label>
+        <label>
+          Y os scatter prikaza
+          <select id="scatter-y"></select>
+        </label>
+        <label>
+          Prikaz od godine
+          <select id="year-start"></select>
+        </label>
+        <label>
+          Prikaz do godine
+          <select id="year-end"></select>
+        </label>
+      </div>
+
+      <div class="comparison-row">
+        <label class="compare-label">
+          Usporedba kategorija
+          <div id="compare-genres" class="compare-list" role="listbox" aria-multiselectable="true" aria-label="Usporedba kategorija"></div>
+        </label>
+
+        <div class="animation-panel">
+          <div class="animation-copy">
+            <p>Animacija kroz stvarne godine izlaska</p>
+            <span>Pokreni ili zaustavi prijelaz kroz odabrani raspon godina i promatraj kako se trziste mijenja unutar tog intervala.</span>
+          </div>
+          <div class="animation-controls">
+            <button id="play-toggle" type="button">Pokreni</button>
+            <button id="reset-filters" class="ghost" type="button">Reset filtera</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="kpi-grid" id="kpi-grid"></section>
+
+    <main class="dashboard-grid">
+      <section class="viz-card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Sortiranje i filtriranje</p>
+            <h2>Rang lista trzista</h2>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="bar-chart"></svg>
+        </div>
+        <div class="chart-control-row">
+          <label class="chart-control-field">
+            Sortiranje
+            <select id="sort-order">
+              <option value="desc">Silazno po metrici</option>
+              <option value="asc">Uzlazno po metrici</option>
+              <option value="alpha">Abecedno</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="viz-card">
+        <div class="card-header mix-card-header">
+          <div>
+            <p class="card-kicker">Povezano ponasanje</p>
+            <h2>Free vs paid miks</h2>
+          </div>
+          <div class="card-legend" id="mix-legend" aria-label="Legenda grafikona free vs paid miks"></div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="engagement-chart"></svg>
+        </div>
+        <div class="chart-toggle-row">
+          <label class="toggle-field chart-toggle-field">
+            Prikaz udjela
+            <div class="share-slider" id="share-view-toggle" role="tablist" aria-label="Prikaz udjela">
+              <button class="share-option active" type="button" data-share-view="free" aria-pressed="true">Free udjeli</button>
+              <button class="share-option" type="button" data-share-view="paid" aria-pressed="false">Paid udjeli</button>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="viz-card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Usporedba vise odabira</p>
+            <h2>Usporedba kroz godine</h2>
+          </div>
+          <div class="card-legend" id="comparison-legend" aria-label="Legenda grafikona usporedba kroz godine"></div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="comparison-chart"></svg>
+        </div>
+        <p class="chart-note" id="comparison-note"></p>
+      </section>
+
+      <section class="viz-card">
+        <div class="card-header">
+          <div>
+            <p class="card-kicker">Visedimenzionalni prikaz</p>
+            <h2>Scatter plot Steam aplikacija</h2>
+          </div>
+          <div class="card-legend" id="scatter-legend" aria-label="Legenda scatter grafikona"></div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="scatter-chart"></svg>
+        </div>
+        <p class="chart-note" id="scatter-note"></p>
+      </section>
+    </main>
+
+    <div class="tooltip" id="tooltip" hidden></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="app.js?v=20260526-1635"></script>
+</body>
+</html>
